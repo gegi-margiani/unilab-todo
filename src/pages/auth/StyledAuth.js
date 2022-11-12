@@ -33,7 +33,7 @@ export const StyledMainDiv = styled.div`
   form {
     margin-bottom: 76px;
   }
-  button {
+  input[type='submit'] {
     margin-bottom: 63px;
     width: 258px;
     height: 66px;
@@ -57,7 +57,7 @@ export const StyledMainDiv = styled.div`
     form {
       margin-bottom: 2.5em;
     }
-    button {
+    input[type='submit'] {
       font-size: 1.6em;
       width: 5em;
       height: 2.3em;
@@ -66,7 +66,7 @@ export const StyledMainDiv = styled.div`
   @media only screen and (min-width: 601px) and (max-width: 1000px) {
     width: 70vw;
 
-    button {
+    input[type='submit'] {
       font-size: 1.6em;
       width: 7em;
       height: 2.5em;

@@ -91,7 +91,7 @@ function Auth() {
               />
             </StyledFormDiv>
           </form>
-          <button onClick={redirectIfValid}>Sign In</button>
+          <input type="submit" value="Sign In" onClick={redirectIfValid} />
         </StyledMainDiv>
       </StyledAuth>
     )

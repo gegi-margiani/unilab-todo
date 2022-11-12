@@ -37,7 +37,7 @@ export const StyledMain = styled.main`
       opacity: 0.2;
     }
   }
-  form > input[type='button'] {
+  form > input[type='submit'] {
     width: 108px;
     height: 78px;
     background: #5efc8d 0% 0% no-repeat padding-box;
@@ -65,7 +65,7 @@ export const StyledMain = styled.main`
       height: 60px;
       padding: 0px calc(10vw / 2) 0px;
     }
-    form > input[type='button'] {
+    form > input[type='submit'] {
       width: 20vw;
       height: 62px;
       font-size: 1.6em;

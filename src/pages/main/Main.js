@@ -10,6 +10,7 @@ function Main() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const inputTodo = useRef(null);
+
   useEffect(() => {
     if (!localStorage.getItem('image') && !localStorage.getItem('name'))
       navigate('/auth');
@@ -34,6 +35,7 @@ function Main() {
       inputTodo.current.value = '';
     }
   };
+
   return (
     localStorage.getItem('image') &&
     localStorage.getItem('name') && (
@@ -49,7 +51,7 @@ function Main() {
               placeholder="my task"
               ref={inputTodo}
             />
-            <input type="button" value="Add" onClick={handleClick} />
+            <input type="submit" value="Add" onClick={handleClick} />
           </form>
           <Todos />
         </StyledMain>
