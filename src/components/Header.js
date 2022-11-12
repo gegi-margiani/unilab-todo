@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import PoppinsBlack from '../../fonts/Poppins/Poppins-Black.ttf';
-import PoppinsLight from '../../fonts/Poppins/Poppins-Light.ttf';
+import PoppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
+import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
 
 const StyledHeader = styled.header`
   @font-face {
@@ -23,6 +23,17 @@ const StyledHeader = styled.header`
     font: normal normal 900 36px/55px 'Poppins-Black';
     color: white;
   }
+  @media only screen and (max-width: 600px) {
+    padding: 0px 1em;
+    h2 {
+      font-size: 2em;
+      overflow-wrap: break-word;
+      line-height: 1em;
+    }
+    span {
+      text-align: center;
+    }
+  }
 `;
 const StyledDiv = styled.div`
   display: flex;
@@ -30,6 +41,9 @@ const StyledDiv = styled.div`
 
   font: normal normal 300 22px/33px 'Poppins-Light';
   color: white;
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -37,6 +51,10 @@ const StyledImage = styled.img`
   width: 68px;
   height: 68px;
   margin-left: 20px;
+  @media only screen and (max-width: 600px) {
+    width: 2em;
+    height: 2em;
+  }
 `;
 
 function Header() {

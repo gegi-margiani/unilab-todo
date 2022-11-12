@@ -5,10 +5,10 @@ import {
   changeTodoStatus,
   deleteTodoStatus,
   initializeTodos,
-} from '../../reducers/todos';
-import PoppinsLight from '../../fonts/Poppins/Poppins-Light.ttf';
-import { ReactComponent as CompleteIcon } from '../../images/complete-icon.svg';
-import { ReactComponent as DeleteIcon } from '../../images/delete-icon.svg';
+} from '../reducers/todos';
+import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
+import { ReactComponent as CompleteIcon } from '../assets/images/complete-icon.svg';
+import { ReactComponent as DeleteIcon } from '../assets/images/delete-icon.svg';
 
 const StyledTodo = styled.div`
   @font-face {
@@ -36,6 +36,9 @@ const StyledTodo = styled.div`
   & > div > div:first-child {
     margin-right: 6px;
   }
+  @media only screen and (max-width: 600px) {
+    width: 100vw;
+  }
 `;
 const StyledIconDiv = styled.div`
   border-radius: 4px;
@@ -59,6 +62,7 @@ function Todos() {
   useEffect(() => {
     if (localStorage.getItem('todos')) dispatch(initializeTodos());
   }, []);
+
   const todos = useSelector(({ todos }) => todos.todos);
   return (
     <div>

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header';
+import Header from '../components/Header';
 import styled from 'styled-components';
-import Todos from './Todos';
-import PoppinsSemiBold from '../../fonts/Poppins/Poppins-SemiBold.ttf';
-import PoppinsLight from '../../fonts/Poppins/Poppins-Light.ttf';
+import Todos from '../components/Todos';
+import PoppinsSemiBold from '../assets/fonts/Poppins/Poppins-SemiBold.ttf';
+import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../reducers/todos';
+import { addTodo } from '../reducers/todos';
 
 const StyledMain = styled.main`
   @font-face {
@@ -55,6 +55,28 @@ const StyledMain = styled.main`
       color: white;
     }
   }
+  @media only screen and (max-width: 600px) {
+    h2 {
+      font-size: 2em;
+      overflow-wrap: break-word;
+    }
+    form {
+      display: flex;
+      width: 100vw;
+      margin-bottom: 51px;
+      margin-top: 27px;
+    }
+    form > input[type='text'] {
+      width: 70vw;
+      height: 60px;
+      padding: 0px calc(10vw / 2) 0px;
+    }
+    form > input[type='button'] {
+      width: 20vw;
+      height: 62px;
+      font-size: 1.6em;
+    }
+  }
 `;
 
 function Main() {
@@ -64,11 +86,26 @@ function Main() {
   useEffect(() => {
     if (!localStorage.getItem('image') && !localStorage.getItem('name'))
       navigate('/auth');
+
+    const todoText = inputTodo.current;
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement === todoText && e.key === 'Enter')
+        handleClick(e);
+    });
+    return () => {
+      window.removeEventListener('keydown', (e) => {
+        if (document.activeElement === todoText && e.key === 'Enter')
+          handleClick(e);
+      });
+    };
   }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (inputTodo.current.value) dispatch(addTodo(inputTodo.current.value));
+    if (inputTodo.current.value) {
+      dispatch(addTodo(inputTodo.current.value));
+      inputTodo.current.value = '';
+    }
   };
   return (
     localStorage.getItem('image') &&

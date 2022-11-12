@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ReactComponent as TodoLogo } from '../images/todo-logo.svg';
+import { ReactComponent as TodoLogo } from '../assets/images/todo-logo.svg';
 import styled from 'styled-components';
-import PoppinsSemiBold from '../fonts/Poppins/Poppins-SemiBold.ttf';
-import PoppinsLight from '../fonts/Poppins/Poppins-Light.ttf';
-import PoppinsBlack from '../fonts/Poppins/Poppins-Black.ttf';
+import PoppinsSemiBold from '../assets/fonts/Poppins/Poppins-SemiBold.ttf';
+import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
+import PoppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
 
 const StyledLandingPage = styled.div`
   background-color: black;
@@ -27,8 +27,8 @@ const StyledDiv = styled.div`
   flex-direction: column;
   align-items: center;
   h1 {
-    margin-top: 46px;
-    margin-bottom: 149px;
+    margin: 46px 3em 149px;
+    text-align: center;
     color: white;
     font: normal normal 600 54px/81px 'Poppins-SemiBold';
   }
@@ -45,11 +45,40 @@ const StyledDiv = styled.div`
       cursor: pointer;
     }
   }
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 2em;
+      overflow-wrap: break-word;
+      margin: 0.5em;
+      text-align: center;
+      line-height: 1.5em;
+    }
+    button {
+      font-size: 2em;
+      width: 8em;
+    }
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1000px) {
+    h1 {
+      font-size: 2.5em;
+      overflow-wrap: break-word;
+      margin: 2.5em;
+      text-align: center;
+      line-height: 1.5em;
+    }
+    button {
+      font-size: 2em;
+      width: 10em;
+    }
+  }
 `;
 const StyledLogo = styled(TodoLogo)`
   @font-face {
     font-family: 'Poppins-Black';
     src: url(${PoppinsBlack}) format('woff');
+  }
+  @media only screen and (max-width: 600px) {
+    width: 5em;
   }
 `;
 

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import Auth from './components/Auth';
-import Main from './components/Main/Main';
+import LandingPage from './pages/LandingPage';
+import Auth from './pages/Auth';
+import Main from './pages/Main';
 
 function App() {
   return (

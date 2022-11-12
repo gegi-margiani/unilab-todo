@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import PoppinsSemiBold from '../fonts/Poppins/Poppins-SemiBold.ttf';
-import PoppinsLight from '../fonts/Poppins/Poppins-Light.ttf';
-import { ReactComponent as PhotoLogo } from '../images/photo-icon.svg';
+import PoppinsSemiBold from '../assets/fonts/Poppins/Poppins-SemiBold.ttf';
+import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
+import { ReactComponent as PhotoLogo } from '../assets/images/photo-icon.svg';
 
 const StyledAuth = styled.div`
   background-color: black;
@@ -50,6 +50,31 @@ const StyledMainDiv = styled.div`
       color: white;
     }
   }
+  @media only screen and (max-width: 600px) {
+    width: 100vw;
+    height: 100vh;
+    h2 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    form {
+      margin-bottom: 2.5em;
+    }
+    button {
+      font-size: 1.6em;
+      width: 5em;
+      height: 2.3em;
+    }
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1000px) {
+    width: 70vw;
+
+    button {
+      font-size: 1.6em;
+      width: 7em;
+      height: 2.5em;
+    }
+  }
 `;
 
 const StyledFormDiv = styled.div`
@@ -81,6 +106,27 @@ const StyledFormDiv = styled.div`
     padding-right: 24px;
     ::placeholder {
       opacity: 0.2;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    input[type='text'] {
+      width: calc(100vw - 5em);
+      height: 3em;
+      font-size: 20px;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    :first-child {
+      margin-bottom: 1.5em;
+    }
+  }
+  @media only screen and (min-width: 601px) and (max-width: 1000px) {
+    input[type='text'] {
+      width: calc(70vw - 10em);
+      height: 3em;
+      font-size: 20px;
+      padding-left: 1em;
+      padding-right: 1em;
     }
   }
 `;
@@ -127,11 +173,20 @@ function Auth() {
     if (localStorage.getItem('image') && localStorage.getItem('name'))
       navigate('/main');
     if (localStorage.getItem('image')) setIsFilePicked(true);
-  }, []);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') redirectIfValid(e);
+    });
+    return () => {
+      window.removeEventListener('keydown', (e) => {
+        if (e.key === 'Enter') redirectIfValid(e);
+      });
+    };
+  }, [isFilePicked]);
 
   const redirectIfValid = (e) => {
     e.preventDefault();
-    if (isFilePicked && inputName.current.value) {
+    if (isFilePicked && inputName.current && inputName.current.value) {
       localStorage.setItem('name', inputName.current.value);
       navigate('/main');
     }
@@ -177,7 +232,7 @@ function Auth() {
               />
             </StyledFormDiv>
           </form>
-          <button onClick={redirectIfValid}> Sign In</button>
+          <button onClick={redirectIfValid}>Sign In</button>
         </StyledMainDiv>
       </StyledAuth>
     )
