@@ -1,10 +1,8 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import PoppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
-import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
+import PoppinsBlack from '../../assets/fonts/Poppins/Poppins-Black.ttf';
+import PoppinsLight from '../../assets/fonts/Poppins/Poppins-Light.ttf';
 
-const StyledHeader = styled.header`
+export const StyledHeader = styled.header`
   @font-face {
     font-family: 'Poppins-Light';
     src: url(${PoppinsLight}) format('woff');
@@ -35,7 +33,7 @@ const StyledHeader = styled.header`
     }
   }
 `;
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   display: flex;
   align-items: center;
 
@@ -46,7 +44,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const StyledImage = styled.img`
+export const StyledImage = styled.img`
   border-radius: 50%;
   width: 68px;
   height: 68px;
@@ -56,21 +54,3 @@ const StyledImage = styled.img`
     height: 2em;
   }
 `;
-
-function Header() {
-  const { completedTodos, totalTodos } = useSelector(({ todos }) => todos);
-  return (
-    <StyledHeader>
-      <h2>TO DO</h2>
-      <StyledDiv>
-        {totalTodos !== 0 && `${completedTodos}/${totalTodos} Completed`}
-      </StyledDiv>
-      <StyledDiv>
-        <span>{localStorage.getItem('name')}</span>
-        <StyledImage src={localStorage.getItem('image')} alt="profile" />
-      </StyledDiv>
-    </StyledHeader>
-  );
-}
-
-export default Header;

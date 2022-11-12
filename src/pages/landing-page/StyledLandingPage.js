@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ReactComponent as TodoLogo } from '../assets/images/todo-logo.svg';
 import styled from 'styled-components';
-import PoppinsSemiBold from '../assets/fonts/Poppins/Poppins-SemiBold.ttf';
-import PoppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
-import PoppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
+import PoppinsSemiBold from '../../assets/fonts/Poppins/Poppins-SemiBold.ttf';
+import PoppinsLight from '../../assets/fonts/Poppins/Poppins-Light.ttf';
+import PoppinsBlack from '../../assets/fonts/Poppins/Poppins-Black.ttf';
+import { ReactComponent as TodoLogo } from '../../assets/images/todo-logo.svg';
 
-const StyledLandingPage = styled.div`
+export const StyledLandingPage = styled.div`
   background-color: black;
   width: 100vw;
   height: 100vh;
@@ -14,7 +12,7 @@ const StyledLandingPage = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   @font-face {
     font-family: 'Poppins-SemiBold';
     src: url(${PoppinsSemiBold}) format('woff');
@@ -72,7 +70,7 @@ const StyledDiv = styled.div`
     }
   }
 `;
-const StyledLogo = styled(TodoLogo)`
+export const StyledLogo = styled(TodoLogo)`
   @font-face {
     font-family: 'Poppins-Black';
     src: url(${PoppinsBlack}) format('woff');
@@ -81,26 +79,3 @@ const StyledLogo = styled(TodoLogo)`
     width: 5em;
   }
 `;
-
-function LandingPage() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem('image') && localStorage.getItem('name'))
-      navigate('/main');
-  }, []);
-  return (
-    (!localStorage.getItem('name') || !localStorage.getItem('image')) && (
-      <StyledLandingPage>
-        <StyledDiv>
-          <StyledLogo />
-          <h1>Keep Track Of Daily Tasks In Life</h1>
-          <Link to="/auth">
-            <button> Get Started</button>
-          </Link>
-        </StyledDiv>
-      </StyledLandingPage>
-    )
-  );
-}
-
-export default LandingPage;
