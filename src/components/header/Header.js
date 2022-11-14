@@ -1,8 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearTodos } from '../../reducers/todos';
 import { StyledDiv, StyledHeader, StyledImage } from './StyledHeader';
 
 function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { completedTodos, totalTodos } = useSelector(({ todos }) => todos);
   return (
     <StyledHeader>
@@ -11,7 +15,17 @@ function Header() {
         {totalTodos !== 0 && `${completedTodos}/${totalTodos} Completed`}
       </StyledDiv>
       <StyledDiv>
-        <span>{localStorage.getItem('name')}</span>
+        <div>
+          <div>{localStorage.getItem('name')}</div>
+          <button
+            onClick={() => {
+              dispatch(clearTodos());
+              navigate('/');
+            }}
+          >
+            log out
+          </button>
+        </div>
         <StyledImage src={localStorage.getItem('image')} alt="profile" />
       </StyledDiv>
     </StyledHeader>

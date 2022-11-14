@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Todos from '../../components/todos/Todos';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../reducers/todos';
+import { addTodo, initializeTodos } from '../../reducers/todos';
 import { StyledMain } from './StyledMain';
 
 function Main() {
@@ -15,6 +15,7 @@ function Main() {
     if (!localStorage.getItem('image') && !localStorage.getItem('name'))
       navigate('/auth');
 
+    dispatch(initializeTodos());
     const todoText = inputTodo.current;
     window.addEventListener('keydown', (e) => {
       if (document.activeElement === todoText && e.key === 'Enter')

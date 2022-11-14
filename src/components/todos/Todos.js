@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  changeTodoStatus,
-  deleteTodoStatus,
-  initializeTodos,
-} from '../../reducers/todos';
+import { changeTodoStatus, deleteTodoStatus } from '../../reducers/todos';
 import { ReactComponent as CompleteIcon } from '../../assets/images/complete-icon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/images/delete-icon.svg';
 import { StyledIconDiv, StyledTodo } from './StyledTodos';
@@ -17,35 +13,33 @@ function Todos() {
   const deleteTodo = (todo) => {
     dispatch(deleteTodoStatus(todo.id));
   };
-  useEffect(() => {
-    if (localStorage.getItem('todos')) dispatch(initializeTodos());
-  }, []);
 
   const todos = useSelector(({ todos }) => todos.todos);
   return (
     <div>
-      {todos.map((todo) => (
-        <StyledTodo key={todo.id} isCompleted={todo.isCompleted}>
-          <span>{todo.content}</span>
-          <div>
-            <StyledIconDiv
-              onClick={() => {
-                toggleIsComplete(todo);
-              }}
-            >
-              <CompleteIcon />
-            </StyledIconDiv>
-            <StyledIconDiv
-              onClick={(e) => {
-                e.preventDefault();
-                deleteTodo(todo);
-              }}
-            >
-              <DeleteIcon />
-            </StyledIconDiv>
-          </div>
-        </StyledTodo>
-      ))}
+      {todos &&
+        todos.map((todo) => (
+          <StyledTodo key={todo.id} isCompleted={todo.isCompleted}>
+            <span>{todo.content}</span>
+            <div>
+              <StyledIconDiv
+                onClick={() => {
+                  toggleIsComplete(todo);
+                }}
+              >
+                <CompleteIcon />
+              </StyledIconDiv>
+              <StyledIconDiv
+                onClick={(e) => {
+                  e.preventDefault();
+                  deleteTodo(todo);
+                }}
+              >
+                <DeleteIcon />
+              </StyledIconDiv>
+            </div>
+          </StyledTodo>
+        ))}
     </div>
   );
 }

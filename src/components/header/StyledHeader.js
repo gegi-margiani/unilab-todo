@@ -21,6 +21,18 @@ export const StyledHeader = styled.header`
     font: normal normal 900 36px/55px 'Poppins-Black';
     color: white;
   }
+  div > div:first-child {
+    text-align: right;
+  }
+  div > button {
+    background: #000000 0% 0% no-repeat padding-box;
+    border: 0px;
+    font-size: 1em;
+    font-family: 'Poppins-Light';
+    color: red;
+    cursor: pointer;
+    text-align: right;
+  }
   @media only screen and (max-width: 600px) {
     padding: 0px 1em;
     h2 {
@@ -28,8 +40,11 @@ export const StyledHeader = styled.header`
       overflow-wrap: break-word;
       line-height: 1em;
     }
-    span {
+    div > span {
       text-align: center;
+    }
+    div > button {
+      line-height: 1.1em;
     }
   }
 `;

@@ -15,8 +15,8 @@ const todosSlice = createSlice({
         isCompleted: false,
         id: uuidv4(),
       });
-      localStorage.setItem('todos', JSON.stringify(state));
       state.totalTodos++;
+      localStorage.setItem('todos', JSON.stringify(state));
     },
     changeTodoStatus(state, action) {
       const todoIndex = state.todos.findIndex(
@@ -38,15 +38,32 @@ const todosSlice = createSlice({
         state.completedTodos--;
       }
       state.todos.splice(todoIndex, 1);
-      localStorage.setItem('todos', JSON.stringify(state));
       state.totalTodos--;
+      localStorage.setItem('todos', JSON.stringify(state));
     },
     initializeTodos(state, action) {
-      return JSON.parse(localStorage.getItem('todos'));
+      if (localStorage.getItem('todos')) {
+        return JSON.parse(localStorage.getItem('todos'));
+      } else {
+        return {
+          todos: [],
+          completedTodos: 0,
+          totalTodos: 0,
+        };
+      }
+    },
+    clearTodos(state, action) {
+      localStorage.clear();
+      return [];
     },
   },
 });
 
-export const { addTodo, changeTodoStatus, deleteTodoStatus, initializeTodos } =
-  todosSlice.actions;
+export const {
+  addTodo,
+  changeTodoStatus,
+  deleteTodoStatus,
+  initializeTodos,
+  clearTodos,
+} = todosSlice.actions;
 export default todosSlice.reducer;
