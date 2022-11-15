@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearTodos } from '../../reducers/todos';
-import { StyledDiv, StyledHeader, StyledImage } from './StyledHeader';
+import { StyledDiv, StyledHeader, StyledImage } from './Header.styled';
 
 function Header() {
   const navigate = useNavigate();

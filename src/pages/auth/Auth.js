@@ -7,7 +7,7 @@ import {
   StyledFormDiv,
   StyledImage,
   StyledMainDiv,
-} from './StyledAuth';
+} from './Auth.styled';
 
 function Auth() {
   const [isFilePicked, setIsFilePicked] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { StyledDiv, StyledLandingPage, StyledLogo } from './StyledLandingPage';
+import { StyledDiv, StyledLandingPage, StyledLogo } from './LandingPage.styled';
 
 function LandingPage() {
   const navigate = useNavigate();
